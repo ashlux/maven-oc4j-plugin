@@ -1,20 +1,95 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">  
 
-  <groupId>com.ashlux</groupId>
-  <artifactId>maven-oc4j-plugin</artifactId>
-  <version>0.1-SNAPSHOT</version>
+    <modelVersion>4.0.0</modelVersion>
 
-  <developers>
-    <developer>
-      <id>ashlux</id>
-      <name>Ash Lux</name>
-      <email>ashlux@gmail.com</email>
-      <roles>
-        <role>Maintainer</role>
-      </roles>
-      <timezone>CDT</timezone>
-    </developer>
-  </developers>
+    <groupId>com.ashlux</groupId>
+    <artifactId>maven-oc4j-plugin</artifactId>
+    <version>0.1-SNAPSHOT</version>
+    <packaging>maven-plugin</packaging>
+
+    <developers>
+        <developer>
+            <id>ashlux</id>
+            <name>Ash Lux</name>
+            <email>ashlux@gmail.com</email>
+            <roles>
+                <role>Maintainer</role>
+            </roles>
+            <timezone>CDT</timezone>
+        </developer>
+    </developers>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.ashlux</groupId>
+                <artifactId>maven-oc4j-plugin</artifactId>
+                <version>0.1-SNAPSHOT</version>
+                <configuration>
+                    <j2eeHome>/home/ashlux/oc4j/j2ee/home</j2eeHome>
+                    <username>oc4jadmin</username>
+                    <password>password</password>
+                    <earDirectory>/home/ashlux/dev/head/arinc/deploy</earDirectory>
+                    <earFile>arinc.ear</earFile>
+                    <deploymentName>arinc</deploymentName>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>5.8</version>
+            <classifier>jdk15</classifier>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.easymock</groupId>
+            <artifactId>easymock</artifactId>
+            <version>2.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.intellij</groupId>
+            <artifactId>annotations</artifactId>
+            <version>7.0.3</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.4</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.4</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.9</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <version>2.0</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
 </project>
