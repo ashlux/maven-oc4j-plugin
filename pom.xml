@@ -1,0 +1,20 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">  
+
+  <groupId>com.ashlux</groupId>
+  <artifactId>maven-oc4j-plugin</artifactId>
+  <version>0.1-SNAPSHOT</version>
+
+  <developers>
+    <developer>
+      <id>ashlux</id>
+      <name>Ash Lux</name>
+      <email>ashlux@gmail.com</email>
+      <roles>
+        <role>Maintainer</role>
+      </roles>
+      <timezone>CDT</timezone>
+    </developer>
+  </developers>
+
+</project>
