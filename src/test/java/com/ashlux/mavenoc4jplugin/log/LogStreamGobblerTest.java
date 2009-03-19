@@ -1,4 +1,4 @@
-package com.ashlux.mavenoc4jplugin;
+package com.ashlux.mavenoc4jplugin.log;
 
 import org.apache.maven.plugin.logging.Log;
 import static org.easymock.EasyMock.*;
@@ -6,6 +6,9 @@ import org.testng.annotations.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+
+import com.ashlux.mavenoc4jplugin.log.LogLevel;
+import com.ashlux.mavenoc4jplugin.log.LogStreamGobbler;
 
 public class LogStreamGobblerTest {
   private static final String lineSeperator = System.getProperty("line.separator");

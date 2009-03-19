@@ -39,10 +39,10 @@ public class DeployEarMojo extends AbstractOc4jMojo {
       ProcessHelper.startProcess(command, getLog());
     } catch (IOException e) {
       getLog().error(e);
-      throw new MojoExecutionException("Failed to wait for java process to complete deploying application.  Sad Panda. :-(", e);
+      throw new MojoExecutionException("Failed to wait for java process.  Sad Panda. :-(", e);
     } catch (InterruptedException e) {
       getLog().error(e);
-      throw new MojoExecutionException("Could not start java process to deploy application.  Sad Panda. :-(", e);
+      throw new MojoExecutionException("Could not start java process.  Sad Panda. :-(", e);
     }
   }
 

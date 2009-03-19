@@ -6,11 +6,11 @@ import org.apache.maven.plugin.MojoFailureException;
 import java.io.IOException;
 
 /**
- * Restart OC4J.
+ * Shutdown OC4J.
  *
- * @goal restart
+ * @goal shutdown
  */
-public class RestartMojo extends AbstractOc4jMojo {
+public class ShutdownMojo extends AbstractOc4jMojo {
   public void execute() throws MojoExecutionException, MojoFailureException {
     String command = buildCommand();
     try {
@@ -26,7 +26,7 @@ public class RestartMojo extends AbstractOc4jMojo {
 
   protected String buildCommand() {
     String command = getJavaHome() + "/bin/java -jar " + getJ2eeHome() + "/" + getAdminJar() + " " +
-        getConnectionUri() + " " + getUsername() + " " + getPassword() + " -restart";
+        getConnectionUri() + " " + getUsername() + " " + getPassword() + " -shutdown";
     getLog().debug("Going to run command [" + command + "].");
     return command;
   }

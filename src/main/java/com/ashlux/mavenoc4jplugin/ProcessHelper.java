@@ -4,6 +4,9 @@ import org.apache.maven.plugin.logging.Log;
 
 import java.io.IOException;
 
+import com.ashlux.mavenoc4jplugin.log.LogLevel;
+import com.ashlux.mavenoc4jplugin.log.LogStreamGobbler;
+
 public class ProcessHelper {
   private ProcessHelper() {
   }

@@ -1,4 +1,4 @@
-package com.ashlux.mavenoc4jplugin;
+package com.ashlux.mavenoc4jplugin.log;
 
 import org.apache.maven.plugin.logging.Log;
 import org.apache.commons.lang.StringUtils;

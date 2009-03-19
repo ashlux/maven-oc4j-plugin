@@ -6,11 +6,18 @@ import org.apache.maven.plugin.MojoFailureException;
 import java.io.IOException;
 
 /**
- * Restart OC4J.
+ * Start an application in OC4J.
  *
- * @goal restart
+ * @goal startApplication
  */
-public class RestartMojo extends AbstractOc4jMojo {
+public class StartApplicationMojo extends AbstractOc4jMojo {
+  /**
+   * Application name when deploying the ear.
+   *
+   * @parameter expression="${oc4j.deploymentName}" default-value="${project.artifactId}"
+   */
+  private String applicationName;
+
   public void execute() throws MojoExecutionException, MojoFailureException {
     String command = buildCommand();
     try {
@@ -26,8 +33,17 @@ public class RestartMojo extends AbstractOc4jMojo {
 
   protected String buildCommand() {
     String command = getJavaHome() + "/bin/java -jar " + getJ2eeHome() + "/" + getAdminJar() + " " +
-        getConnectionUri() + " " + getUsername() + " " + getPassword() + " -restart";
+        getConnectionUri() + " " + getUsername() + " " + getPassword() +
+        " -start " + applicationName;
     getLog().debug("Going to run command [" + command + "].");
     return command;
+  }
+
+  public String getApplicationName() {
+    return applicationName;
+  }
+
+  public void setApplicationName(String applicationName) {
+    this.applicationName = applicationName;
   }
 }

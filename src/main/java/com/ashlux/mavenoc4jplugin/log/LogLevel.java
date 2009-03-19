@@ -1,4 +1,4 @@
-package com.ashlux.mavenoc4jplugin;
+package com.ashlux.mavenoc4jplugin.log;
 
 public enum LogLevel {
   DEBUG,
