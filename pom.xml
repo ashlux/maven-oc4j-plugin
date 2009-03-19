@@ -11,7 +11,8 @@
     <url>http://www.ashlux.com/oc4j-maven-plugin</url>
 
     <scm>
-        <url>scm:git:git://github.com/ashlux/maven-oc4j-plugin.git</url>
+        <url>http://github.com/ashlux/maven-oc4j-plugin/tree/master</url>
+        <connection>scm:git:git://github.com/ashlux/maven-oc4j-plugin.git</connection>
     </scm>
 
     <developers>
