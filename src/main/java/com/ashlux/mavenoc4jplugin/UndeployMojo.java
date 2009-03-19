@@ -7,11 +7,11 @@ import org.apache.maven.plugin.MojoFailureException;
 import java.io.IOException;
 
 /**
- * Deploy ear to OC4J.
+ * Undeploy ear from OC4J.
  *
- * @goal deploy
+ * @goal undeploy
  */
-public class DeployMojo extends AbstractMojo {
+public class UndeployMojo extends AbstractMojo {
   /**
    * Java home
    *
@@ -52,20 +52,6 @@ public class DeployMojo extends AbstractMojo {
   private String password;
 
   /**
-   * Directory where the ear file for deploying is located.
-   *
-   * @parameter expression="${oc4j.earDirectory}" default-value="${project.build.directory}"
-   */
-  private String earDirectory;
-
-  /**
-   * Ear file to deploy.
-   *
-   * @parameter expression="${oc4j.earFile}" default-value="${project.build.finalName}.${project.packaging}"
-   */
-  private String earFile;
-
-  /**
    * Application name when deploying the ear.
    *
    * @parameter expression="${oc4j.deploymentName}" default-value="${project.artifactId}"
@@ -78,18 +64,17 @@ public class DeployMojo extends AbstractMojo {
       ProcessHelper.startProcess(command, getLog());
     } catch (IOException e) {
       getLog().error(e);
-      throw new MojoExecutionException("Failed to wait for java process to complete deploying application.  Sad Panda. :-(", e);
+      throw new MojoExecutionException("Failed to wait for java process to complete undeploying application.  Sad Panda. :-(", e);
     } catch (InterruptedException e) {
       getLog().error(e);
-      throw new MojoExecutionException("Could not start java process to deploy application.  Sad Panda. :-(", e);
+      throw new MojoExecutionException("Could not start java process to undeploy application.  Sad Panda. :-(", e);
     }
   }
-
+  
   protected String buildCommand() {
     String command = javaHome + "/bin/java -jar " + j2eeHome + "/admin.jar " +
-        ormiUrl + " " + username + " " + password + " -deploy " +
-        "-file " + earDirectory + "/" + earFile + " " +
-        "-deploymentName " + applicationName;
+        ormiUrl + " " + username + " " + password +
+        " -undeploy " + applicationName;
     getLog().debug("Going to run command [" + command + "].");
     return command;
   }
@@ -132,22 +117,6 @@ public class DeployMojo extends AbstractMojo {
 
   public void setPassword(String password) {
     this.password = password;
-  }
-
-  public String getEarDirectory() {
-    return earDirectory;
-  }
-
-  public void setEarDirectory(String earDirectory) {
-    this.earDirectory = earDirectory;
-  }
-
-  public String getEarFile() {
-    return earFile;
-  }
-
-  public void setEarFile(String earFile) {
-    this.earFile = earFile;
   }
 
   public String getApplicationName() {

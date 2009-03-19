@@ -1,0 +1,11 @@
+ ------
+ Introduction
+ ------
+ ------
+ ------
+
+OC4J Maven Plugin
+
+ OC4J Maven Plugin deploys and undeploys ears for OC4J.
+
+ See {{{plugin-info.html}goals}} for usage.
