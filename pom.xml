@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">  
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">  
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -34,6 +33,11 @@
                 <groupId>org.jvnet.wagon-svn</groupId>
                 <artifactId>wagon-svn</artifactId>
                 <version>1.9</version>
+            </extension>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ftp</artifactId>
+                <version>1.0-alpha-6</version>
             </extension>
         </extensions>
         <plugins>
@@ -173,17 +177,14 @@
     </dependencies>
 
     <distributionManagement>
-      <repository>
-      <id>ashlux-ftp-repository</id>
-      <url>ftp://www.ashlux.com/maven2/repo</url>
-      </repository>
-    </distributionManagement>
-
-    <repositories>
         <repository>
-            <id>don-asf-repository</id>
-            <url>http://people.apache.org/~mrdon/repository/</url>
+            <id>ashlux-ftp-repository</id>
+            <url>ftp://www.ashlux.com/www/www/maven2/repo</url>
         </repository>
-    </repositories>
+        <snapshotRepository>
+            <id>ashlux-ftp-snapshotrepo</id>
+            <url>ftp://www.ashlux.com/www/www/maven2/snapshotRepo</url>
+        </snapshotRepository>
+    </distributionManagement>
     
 </project>
