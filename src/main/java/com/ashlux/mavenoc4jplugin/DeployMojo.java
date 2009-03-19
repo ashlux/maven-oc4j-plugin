@@ -15,7 +15,7 @@ public class DeployMojo extends AbstractMojo {
   /**
    * Java home
    *
-   * @parameter expression="${java.home}
+   * @parameter expression="${java.home}"
    * @readonly
    */
   private String javaHome;
