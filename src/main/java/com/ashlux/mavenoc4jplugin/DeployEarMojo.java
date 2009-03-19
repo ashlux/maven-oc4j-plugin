@@ -9,48 +9,9 @@ import java.io.IOException;
 /**
  * Deploy ear to OC4J.
  *
- * @goal deploy
+ * @goal deployEar
  */
-public class DeployMojo extends AbstractMojo {
-  /**
-   * Java home
-   *
-   * @parameter expression="${java.home}"
-   * @readonly
-   */
-  private String javaHome;
-
-  /**
-   * J2EE home, directory where admin.jar is located.
-   *
-   * @parameter expression="${oc4j.j2eeHome}"
-   * @required
-   */
-  private String j2eeHome;
-
-  /**
-   * ORMI URL.
-   *
-   * @parameter expression="${oc4j.ormiUrl}" default-value="ormi://localhost/"
-   */
-  private String ormiUrl;
-
-  /**
-   * Username used for deploying.
-   *
-   * @parameter expression="${oc4j.username}"
-   * @required
-   */
-  private String username;
-
-  /**
-   * Password used for deploying.
-   *
-   * @parameter expression="${oc4j.password}"
-   * @required
-   */
-  private String password;
-
+public class DeployEarMojo extends AbstractOc4jMojo {
   /**
    * Directory where the ear file for deploying is located.
    *
@@ -86,52 +47,12 @@ public class DeployMojo extends AbstractMojo {
   }
 
   protected String buildCommand() {
-    String command = javaHome + "/bin/java -jar " + j2eeHome + "/admin.jar " +
-        ormiUrl + " " + username + " " + password + " -deploy " +
+    String command = getJavaHome() + "/bin/java -jar " + getJ2eeHome() + "/" + getAdminJar() + " " +
+        getConnectionUri() + " " + getUsername() + " " + getPassword() + " -deploy " +
         "-file " + earDirectory + "/" + earFile + " " +
-        "-deploymentName " + applicationName;
+        "-deploymentName " + applicationName + " -bindAllWebApps";
     getLog().debug("Going to run command [" + command + "].");
     return command;
-  }
-
-  public String getJavaHome() {
-    return javaHome;
-  }
-
-  public void setJavaHome(String javaHome) {
-    this.javaHome = javaHome;
-  }
-
-  public String getJ2eeHome() {
-    return j2eeHome;
-  }
-
-  public void setJ2eeHome(String j2eeHome) {
-    this.j2eeHome = j2eeHome;
-  }
-
-  public String getOrmiUrl() {
-    return ormiUrl;
-  }
-
-  public void setOrmiUrl(String ormiUrl) {
-    this.ormiUrl = ormiUrl;
-  }
-
-  public String getUsername() {
-    return username;
-  }
-
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
   }
 
   public String getEarDirectory() {
