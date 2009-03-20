@@ -1,0 +1,37 @@
+------
+ Usage
+ ------
+ Ash Lux
+ ------
+ March 19th, 2009
+
+Usage
+
+  OC4J Maven Plugin attempts to deploy and undeploy ears and wars, start and stop applications,
+  and restart and shutdown OC4J using Maven 2.
+
++-----
+  mvn com.ashlux:maven-oc4j-plugin:deployEar
++-----
+
+  Deploy the specified ear using <<<deployEar>>>.
+
+  TODO: Document the rest of goals.
+
++-----
+<project>
+  [...]
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.ashlux</groupId>
+        <artifactId>oc4j-maven-plugin</artifactId>
+        <configuration>
+        [...]
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  [...]
+</project>
++-----
