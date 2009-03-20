@@ -1,8 +1,29 @@
 package com.ashlux.mavenoc4jplugin;
 
 import org.apache.maven.plugin.AbstractMojo;
+import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.MojoFailureException;
+
+import java.io.IOException;
 
 abstract public class AbstractOc4jMojo extends AbstractMojo {
+
+  final public void execute() throws MojoExecutionException, MojoFailureException {
+    String command = buildCommand();
+    try {
+      ProcessHelper.startProcess(command, getLog());
+    } catch (IOException e) {
+      getLog().error(e);
+      throw new MojoExecutionException("Failed to wait for java process.  Sad Panda. :-(", e);
+    } catch (InterruptedException e) {
+      getLog().error(e);
+      throw new MojoExecutionException("Could not start java process.  Sad Panda. :-(", e);
+    }
+  }
+
+
+  abstract String buildCommand();
+
   /**
    * Java home
    *

@@ -1,10 +1,5 @@
 package com.ashlux.mavenoc4jplugin;
 
-import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.MojoFailureException;
-
-import java.io.IOException;
-
 /**
  * Deploy war to OC4J.
  *
@@ -31,20 +26,13 @@ public class DeployWarMojo extends AbstractOc4jMojo {
    * @parameter expression="${oc4j.deploymentName}" default-value="${project.artifactId}"
    */
   private String applicationName;
-  private String contextRoot;
 
-  public void execute() throws MojoExecutionException, MojoFailureException {
-    String command = buildCommand();
-    try {
-      ProcessHelper.startProcess(command, getLog());
-    } catch (IOException e) {
-      getLog().error(e);
-      throw new MojoExecutionException("Failed to wait for java process.  Sad Panda. :-(", e);
-    } catch (InterruptedException e) {
-      getLog().error(e);
-      throw new MojoExecutionException("Could not start java process.  Sad Panda. :-(", e);
-    }
-  }
+  /**
+   * Context root.
+   *
+   * @parameter expression="${oc4j.contextRoot}"
+   */
+  private String contextRoot;
 
   protected String buildCommand() {
     String command = getJavaHome() + "/bin/java -jar " + getJ2eeHome() + "/" + getAdminJar() + " " +

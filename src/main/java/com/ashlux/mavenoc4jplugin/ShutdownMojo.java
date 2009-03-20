@@ -1,29 +1,11 @@
 package com.ashlux.mavenoc4jplugin;
 
-import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.MojoFailureException;
-
-import java.io.IOException;
-
 /**
  * Shutdown OC4J.
  *
  * @goal shutdown
  */
 public class ShutdownMojo extends AbstractOc4jMojo {
-  public void execute() throws MojoExecutionException, MojoFailureException {
-    String command = buildCommand();
-    try {
-      ProcessHelper.startProcess(command, getLog());
-    } catch (IOException e) {
-      getLog().error(e);
-      throw new MojoExecutionException("Failed to wait for java process.  Sad Panda. :-(", e);
-    } catch (InterruptedException e) {
-      getLog().error(e);
-      throw new MojoExecutionException("Could not start java process.  Sad Panda. :-(", e);
-    }
-  }
-
   protected String buildCommand() {
     String command = getJavaHome() + "/bin/java -jar " + getJ2eeHome() + "/" + getAdminJar() + " " +
         getConnectionUri() + " " + getUsername() + " " + getPassword() + " -shutdown";
