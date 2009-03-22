@@ -87,3 +87,25 @@ mvn com.ashlux:oc4j-maven-plugin:deployEar
 +-----
 mvn com.ashlux:oc4j-maven-plugin:deployEar -P test
 +-----
+
+* {Remote repository}
+
+  At this time, this plugin does not exist in the maven.org central repository.
+
+  A remote repository does exist at ashlux.com.  You can use it by adding the following
+  to your pom.xml (or conf/settings.xml):
+
++-----
+    <repositories>
+        <repository>
+            <id>ashlux.com-repo</id>
+            <name>Ashlux.com Release Repository</name>
+            <url>http://www.ashlux.com/maven2/repo</url>
+        </repository>
+        <repository>
+            <id>ashlux.com-snapshotRepo</id>
+            <name>Ashlux.com Snapshot Repository</name>
+            <url>http://www.ashlux.com/maven2/snapshotRepo</url>
+        </repository>
+    </repositories>
++-----
