@@ -1,4 +1,4 @@
-------
+ ------
  Usage
  ------
  Ash Lux
@@ -10,13 +10,9 @@ Usage
   OC4J Maven Plugin attempts to deploy and undeploy ears and wars, start and stop applications,
   and restart and shutdown OC4J using Maven 2.
 
-+-----
-  mvn com.ashlux:maven-oc4j-plugin:deployEar
-+-----
+* {Simple usage}
 
-  Deploy the specified ear using <<<deployEar>>>.
-
-  TODO: Document the rest of goals.
+  The simplest usage would look something like this:
 
 +-----
 <project>
@@ -27,11 +23,67 @@ Usage
         <groupId>com.ashlux</groupId>
         <artifactId>oc4j-maven-plugin</artifactId>
         <configuration>
-        [...]
+          <j2eeHome>/opt/oc4j/j2ee/home</j2eeHome>
+          <adminJar>admin_client.jar</adminJar>
+          <username>oc4jadmin</username>
+          <password>password</password>
         </configuration>
       </plugin>
     </plugins>
   </build>
   [...]
 </project>
++-----
+
+  Using this configuration to deploy an ear is as simple as typing:
+
++-----
+mvn com.ashlux:oc4j-maven-plugin:deployEar
++-----
+
+* {Profiles for multiple environments}
+
+  Commonly there is a need to delpoy to multiple environments such as local, test, and prod.
+  This can be achieved by using profiles inside of the pom.xml or your local settings conf/settings.xml:
+
++-----
+<profiles>
+  <profile>
+    <id>local</id>
+    <plugins>
+      <plugin>
+        <groupId>com.ashlux</groupId>
+        <artifactId>oc4j-maven-plugin</artifactId>
+        <configuration>
+          <j2eeHome>/opt/oc4j/j2ee/home</j2eeHome>
+          <adminJar>admin_client.jar</adminJar>
+          <connectionUri>ormi://local/</connectionUri>
+          <username>oc4jadmin</username>
+          <password>localpassword</password>
+        </configuration>
+      </plugin>
+    </plugins>
+  </profile>
+  <profile>
+    <id>test</id>
+    <plugins>
+      <plugin>
+        <groupId>com.ashlux</groupId>
+        <artifactId>oc4j-maven-plugin</artifactId>
+        <configuration>
+          <j2eeHome>/opt/oc4j/j2ee/home</j2eeHome>
+          <adminJar>admin_client.jar</adminJar>
+          <connectionUri>ormi://test/</connectionUri>
+          <username>oc4jadmin</username>
+          <password>testpassword</password>
+        </configuration>
+      </plugin>
+    </plugins>
+  </profile>
++-----
+
+  Using this configuration to deploy an ear to test with:
+
++-----
+mvn com.ashlux:oc4j-maven-plugin:deployEar -P test
 +-----
