@@ -4,7 +4,7 @@
 
     <groupId>com.ashlux</groupId>
     <artifactId>oc4j-maven-plugin</artifactId>
-    <version>0.2-SNAPSHOT</version>
+    <version>0.3-SNAPSHOT</version>
     <name>OC4J Maven Plugin</name>
     <packaging>maven-plugin</packaging>
     <url>http://www.ashlux.com/oc4j-maven-plugin</url>
@@ -143,6 +143,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
+                <configuration>
+                    <targetJdk>1.5</targetJdk>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
