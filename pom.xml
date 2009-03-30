@@ -30,8 +30,8 @@
 
     <licenses>
         <license>
-            <name>Public Domain</name>
-            <url>http://en.wikipedia.org/wiki/Public_domain</url>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
     </licenses>
 
