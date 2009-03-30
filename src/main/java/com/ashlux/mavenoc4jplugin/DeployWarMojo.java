@@ -31,6 +31,7 @@ public class DeployWarMojo extends AbstractOc4jMojo {
    * Context root.
    *
    * @parameter expression="${oc4j.contextRoot}"
+   * @required
    */
   private String contextRoot;
 
