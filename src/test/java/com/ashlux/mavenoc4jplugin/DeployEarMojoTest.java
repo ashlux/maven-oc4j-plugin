@@ -1,9 +1,8 @@
 package com.ashlux.mavenoc4jplugin;
 
-import static org.testng.Assert.assertEquals;
-
 import java.io.File;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 public class DeployEarMojoTest {
@@ -23,6 +22,6 @@ public class DeployEarMojoTest {
 
 		String command = deployMojo.buildCommand();
 
-		assertEquals(command,"javaHome" + File.separator + "bin" + File.separator + "java -jar j2eeHome" + File.separator + "adminJar connectionUri username password -deploy -file earDirectory" + File.separator + "earFile -deploymentName applicationName -bindAllWebApps");
+		Assert.assertEquals(command,"javaHome" + File.separator + "bin" + File.separator + "java -jar j2eeHome" + File.separator + "adminJar connectionUri username password -deploy -file earDirectory" + File.separator + "earFile -deploymentName applicationName -bindAllWebApps");
 	}
 }
