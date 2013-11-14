@@ -3,8 +3,8 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://maven.apache.org/FML/1.0 http://maven.apache.org/xsd/fml-1.0.xsd"
       id="FAQ" title="Frequently Asked Questions">
-    <part>
-        <faq>
+    <part id="part">
+        <faq id="faq">
             <question>Where can I get help?</question>
             <answer>
                 Ask a question in the <a href="https://answers.launchpad.net/oc4j-maven-plugin">questions</a> section of launchpad.

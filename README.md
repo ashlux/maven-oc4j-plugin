@@ -1,0 +1,103 @@
+maven-oc4j-plugin
+=================
+
+OC4J Maven Plugin attempts to deploy and undeploy ears and wars, start and stop applications, and restart and shutdown OC4J using Maven 2.
+
+
+Simple usage
+
+The simplest usage would look something like this:
+
+```xml
+<project>
+  [...]
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.ashlux</groupId>
+        <artifactId>oc4j-maven-plugin</artifactId>
+        <configuration>
+          <j2eeHome>/opt/oc4j/j2ee/home</j2eeHome>
+          <adminJar>admin_client.jar</adminJar>
+          <username>oc4jadmin</username>
+          <password>password</password>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  [...]
+</project>
+```
+
+Using this configuration to deploy an ear is as simple as typing:
+
+```
+mvn com.ashlux:oc4j-maven-plugin:deployEar
+```
+
+Profiles for multiple environments
+
+Commonly there is a need to deploy to multiple environments such as local, test, and prod. This can be achieved by using profiles inside of the pom.xml or your local settings conf/settings.xml:
+
+```xml
+<profiles>
+  <profile>
+    <id>local</id>
+    <plugins>
+      <plugin>
+        <groupId>com.ashlux</groupId>
+        <artifactId>oc4j-maven-plugin</artifactId>
+        <configuration>
+          <j2eeHome>/opt/oc4j/j2ee/home</j2eeHome>
+          <adminJar>admin_client.jar</adminJar>
+          <connectionUri>ormi://local/</connectionUri>
+          <username>oc4jadmin</username>
+          <password>localpassword</password>
+        </configuration>
+      </plugin>
+    </plugins>
+  </profile>
+  <profile>
+    <id>test</id>
+    <plugins>
+      <plugin>
+        <groupId>com.ashlux</groupId>
+        <artifactId>oc4j-maven-plugin</artifactId>
+        <configuration>
+          <j2eeHome>/opt/oc4j/j2ee/home</j2eeHome>
+          <adminJar>admin_client.jar</adminJar>
+          <connectionUri>ormi://test/</connectionUri>
+          <username>oc4jadmin</username>
+          <password>testpassword</password>
+        </configuration>
+      </plugin>
+    </plugins>
+  </profile>
+```
+
+Using this configuration to deploy an ear to test with:
+
+```
+mvn com.ashlux:oc4j-maven-plugin:deployEar -P test
+```
+
+Remote repository
+
+At this time, this plugin does not exist in the maven.org central repository.
+
+A remote repository does exist at ashlux.com. You can use it by adding the following to your pom.xml (or conf/settings.xml):
+
+```xml
+    <repositories>
+        <repository>
+            <id>ashlux.com-repo</id>
+            <name>Ashlux.com Release Repository</name>
+            <url>http://www.ashlux.com/maven2/repo</url>
+        </repository>
+        <repository>
+            <id>ashlux.com-snapshotRepo</id>
+            <name>Ashlux.com Snapshot Repository</name>
+            <url>http://www.ashlux.com/maven2/snapshotRepo</url>
+        </repository>
+    </repositories>
+```

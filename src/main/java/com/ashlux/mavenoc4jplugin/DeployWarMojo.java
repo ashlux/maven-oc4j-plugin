@@ -1,78 +1,79 @@
 package com.ashlux.mavenoc4jplugin;
 
+import java.io.File;
+
 /**
  * Deploy war to OC4J.
- *
+ * 
  * @goal deployWar
  */
 public class DeployWarMojo extends AbstractOc4jMojo {
-  /**
-   * Directory where the ear file for deploying is located.
-   *
-   * @parameter expression="${oc4j.warDirectory}" default-value="${project.build.directory}"
-   */
-  private String warDirectory;
 
-  /**
-   * War file to deploy.
-   *
-   * @parameter expression="${oc4j.warFile}" default-value="${project.build.finalName}.${project.packaging}"
-   */
-  private String warFile;
+	/**
+	 * Directory where the ear file for deploying is located.
+	 * 
+	 * @parameter expression="${oc4j.warDirectory}" default-value="${project.build.directory}"
+	 */
+	private String warDirectory;
 
-  /**
-   * Application name when deploying the ear.
-   *
-   * @parameter expression="${oc4j.deploymentName}" default-value="${project.artifactId}"
-   */
-  private String applicationName;
+	/**
+	 * War file to deploy.
+	 * 
+	 * @parameter expression="${oc4j.warFile}" default-value="${project.build.finalName}.${project.packaging}"
+	 */
+	private String warFile;
 
-  /**
-   * Context root.
-   *
-   * @parameter expression="${oc4j.contextRoot}"
-   * @required
-   */
-  private String contextRoot;
+	/**
+	 * Application name when deploying the ear.
+	 * 
+	 * @parameter expression="${oc4j.deploymentName}" default-value="${project.artifactId}"
+	 */
+	private String applicationName;
 
-  protected String buildCommand() {
-    String command = getJavaHome() + "/bin/java -jar " + getJ2eeHome() + "/" + getAdminJar() + " " +
-        getConnectionUri() + " " + getUsername() + " " + getPassword() + " -deploy " +
-        "-file " + warDirectory + "/" + warFile + " " +
-        "-deploymentName " + applicationName + " -contextRoot " + contextRoot;
-    getLog().debug("Going to run command [" + command + "].");
-    return command;
-  }
+	/**
+	 * Context root.
+	 * 
+	 * @parameter expression="${oc4j.contextRoot}"
+	 * @required
+	 */
+	private String contextRoot;
 
-  public String getWarDirectory() {
-    return warDirectory;
-  }
+	@Override
+	protected String buildCommand() {
+		String command = getJavaHome() + CALL_JAVA_JAR_RUN + getJ2eeHome() + File.separator + getAdminJar() + " " + getConnectionUri() + " " + getUsername() + " " + getPassword() + " -deploy " + "-file " + warDirectory + File.separator + warFile + " " + "-deploymentName " + applicationName + " -contextRoot " + contextRoot;
+		showCommandOutput(command);
+		return command;
+	}
 
-  public void setWarDirectory(String warDirectory) {
-    this.warDirectory = warDirectory;
-  }
+	public String getWarDirectory() {
+		return warDirectory;
+	}
 
-  public String getWarFile() {
-    return warFile;
-  }
+	public void setWarDirectory(String warDirectory) {
+		this.warDirectory = warDirectory;
+	}
 
-  public void setWarFile(String warFile) {
-    this.warFile = warFile;
-  }
+	public String getWarFile() {
+		return warFile;
+	}
 
-  public String getApplicationName() {
-    return applicationName;
-  }
+	public void setWarFile(String warFile) {
+		this.warFile = warFile;
+	}
 
-  public void setApplicationName(String applicationName) {
-    this.applicationName = applicationName;
-  }
+	public String getApplicationName() {
+		return applicationName;
+	}
 
-  public void setContextRoot(String contextRoot) {
-    this.contextRoot = contextRoot;
-  }
+	public void setApplicationName(String applicationName) {
+		this.applicationName = applicationName;
+	}
 
-  public String getContextRoot() {
-    return contextRoot;
-  }
+	public void setContextRoot(String contextRoot) {
+		this.contextRoot = contextRoot;
+	}
+
+	public String getContextRoot() {
+		return contextRoot;
+	}
 }
