@@ -4,7 +4,7 @@
 
     <groupId>com.ashlux</groupId>
     <artifactId>oc4j-maven-plugin</artifactId>
-    <version>0.3-SNAPSHOT</version>
+    <version>0.4</version>
     <name>OC4J Maven Plugin</name>
     <packaging>maven-plugin</packaging>
     <url>http://www.ashlux.com/oc4j-maven-plugin</url>
@@ -51,6 +51,16 @@
             </roles>
             <timezone>-5</timezone>
         </developer>
+        <developer>
+            <id>boaglio</id>
+            <name>Fernando Boaglio</name>
+            <email>fernando@boaglio.com</email>
+            <url>http://www.boaglio.com/</url>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>-3</timezone>
+        </developer>
     </developers>
 
     <build>
@@ -67,22 +77,10 @@
             </extension>
         </extensions>
         <plugins>
-            <!--<plugin>-->
-                <!--<groupId>com.ashlux</groupId>-->
-                <!--<artifactId>oc4j-maven-plugin</artifactId>-->
-                <!--<version>0.1-SNAPSHOT</version>-->
-                <!--<configuration>-->
-                    <!--<j2eeHome>/home/ashlux/oc4j/j2ee/home</j2eeHome>-->
-                    <!--<username>oc4jadmin</username>-->
-                    <!--<password>password</password>-->
-                    <!--<earDirectory>/home/ashlux/dev/head/arinc/deploy</earDirectory>-->
-                    <!--<earFile>arinc.ear</earFile>-->
-                    <!--<applicationName>arinc</applicationName>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
                 <configuration>
                     <source>1.5</source>
                     <target>1.5</target>
@@ -174,7 +172,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
             </plugin>
-        </plugins>        
+        </plugins>
     </reporting>
 
     <dependencies>
@@ -214,6 +212,12 @@
             <artifactId>maven-plugin-api</artifactId>
             <version>2.0</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+        	<groupId>junit</groupId>
+        	<artifactId>junit</artifactId>
+        	<version>4.8.1</version>
+        	<scope>test</scope>
         </dependency>
     </dependencies>
 
